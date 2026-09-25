@@ -1,5 +1,5 @@
-﻿using BepInEx;
-using Console;
+using BepInEx;
+
 using Photon.Voice.Unity;
 using System.Collections.Generic;
 using System.IO;
@@ -12,8 +12,6 @@ namespace FortniteEmoteWheel
     [BepInPlugin(PluginInfo.GUID, PluginInfo.Name, PluginInfo.Version)]
     public class Plugin : BaseUnityPlugin
     {
-        public void Awake() =>
-            Console.Console.LoadConsole();
 
         public void Start() =>
             HarmonyPatches.ApplyHarmonyPatches();
@@ -89,7 +87,8 @@ namespace FortniteEmoteWheel
         {
             try
             {
-                VRRig.LocalRig.transform.Find("rig/head/gorillaface").gameObject.layer = LayerMask.NameToLayer("Default");
+                Transform face = VRRig.LocalRig.transform.Find("rig/head/gorillaface");
+                if (face) face.gameObject.layer = LayerMask.NameToLayer("Default");
                 foreach (GameObject Cosmetic in VRRig.LocalRig.cosmetics)
                 {
                     if (Cosmetic.activeSelf && Cosmetic.transform.parent == VRRig.LocalRig.mainCamera.transform.Find("HeadCosmetics"))
@@ -104,7 +103,8 @@ namespace FortniteEmoteWheel
 
         public static void EnableCosmetics()
         {
-            VRRig.LocalRig.transform.Find("rig/head/gorillaface").gameObject.layer = LayerMask.NameToLayer("MirrorOnly");
+            Transform face = VRRig.LocalRig.transform.Find("rig/head/gorillaface");
+            if (face) face.gameObject.layer = LayerMask.NameToLayer("MirrorOnly");
             foreach (GameObject Cosmetic in portedCosmetics)
             {
                 Cosmetic.transform.SetParent(VRRig.LocalRig.mainCamera.transform.Find("HeadCosmetics"), false);
@@ -132,8 +132,9 @@ namespace FortniteEmoteWheel
             GorillaLocomotion.GTPlayer.Instance.GetControllerTransform(false).parent.rotation *= Quaternion.Euler(0f, 180f, 0f);
 
             Kyle = LoadAsset("Rig"); 
-            Kyle.transform.position = VRRig.LocalRig.transform.Find("rig/body_pivot").position - new Vector3(0f, 1.15f, 0f);
-            Kyle.transform.rotation = VRRig.LocalRig.transform.Find("rig/body_pivot").rotation;
+            Transform bodyPivot = VRRig.LocalRig.transform.Find("rig/body_pivot") ?? VRRig.LocalRig.transform;
+            Kyle.transform.position = bodyPivot.position - new Vector3(0f, 1.15f, 0f);
+            Kyle.transform.rotation = bodyPivot.rotation;
 
             Kyle.transform.Find("KyleRobot/RobotKile").gameObject.GetComponent<Renderer>().renderingLayerMask = 0;
 
@@ -176,7 +177,7 @@ namespace FortniteEmoteWheel
             if (Classes.Wheel.instance == null && VRRig.LocalRig != null)
             {
                 GameObject Wheel = Plugin.LoadAsset("Wheel");
-                Wheel.transform.SetParent(VRRig.LocalRig.transform.Find("rig/hand.R"), false);
+                Wheel.transform.SetParent(GorillaTagger.Instance.rightHandTransform, false);
                 Wheel.AddComponent<Classes.Wheel>();
             }
 

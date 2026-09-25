@@ -1,4 +1,4 @@
-﻿using BepInEx;
+using BepInEx;
 using GorillaNetworking;
 using HarmonyLib;
 using System;
@@ -77,8 +77,7 @@ namespace FortniteEmoteWheel.Classes
                 return SteamVR_Actions.gorillaTag_LeftJoystickClick.GetState(SteamVR_Input_Sources.LeftHand);
             else
             {
-                ControllerInputPoller.instance.leftControllerDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primary2DAxisClick, out bool leftJoystickClick);
-                return leftJoystickClick;
+                return ControllerInputPoller.instance.leftControllerSecondaryButton;
             }
         }
 
@@ -88,8 +87,7 @@ namespace FortniteEmoteWheel.Classes
                 return SteamVR_Actions.gorillaTag_RightJoystickClick.GetState(SteamVR_Input_Sources.RightHand);
             else
             {
-                ControllerInputPoller.instance.rightControllerDevice.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primary2DAxisClick, out bool rightJoystickClick);
-                return rightJoystickClick;
+                return ControllerInputPoller.instance.rightControllerSecondaryButton;
             }
         }
 
@@ -217,7 +215,7 @@ namespace FortniteEmoteWheel.Classes
                     }
                     if (Page == 2)
                     {
-                        pageTitle = "NEW";
+                        pageTitle = "S2 EMOTES";
                         switch (selected)
                         {
                             case 0:
