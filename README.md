@@ -5,16 +5,16 @@ The emote wheel from Fortnite, directly ported to Gorilla Tag.
 ---
 
 # Controls
-- Open: Right Joystick Click / B
+- Open: Right Controller B / Right Joystick Click (SteamVR) / Keyboard B
 - Select: Right Joystick Axis / Mouse
 - Change Page: Left Joystick Axis / Left Click / Right Click
-- Stop Emote: Left Joystick Click / V
+- Stop Emote: Left Controller Y / Left Joystick Click (SteamVR) / Keyboard V
 
 ---
 
 # Installation
 
-- Download the release from [here](https://github.com/iiDk-the-actual/FortniteEmoteWheel/releases/latest)
+- Download the release from [here](https://github.com/iiDkRemastered/fortniteemotewheel/releases/latest)
 - Drag the file `FortniteEmoteWheel.dll` to your plugins folder
 - Start Gorilla Tag if needed
 
