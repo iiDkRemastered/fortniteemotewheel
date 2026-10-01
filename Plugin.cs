@@ -129,7 +129,7 @@ namespace FortniteEmoteWheel
             Play2DAudio(LoadSoundFromResource("play"), 0.5f);
 
             archivePosition = GorillaTagger.Instance.transform.position;
-            GorillaLocomotion.GTPlayer.Instance.GetControllerTransform(false).parent.rotation *= Quaternion.Euler(0f, 180f, 0f);
+            GorillaLocomotion.GTPlayer.Instance.GetControllerTransform(false).parent.rotation *= Quaternion.Euler(0f, 0f, 0f);
 
             Kyle = LoadAsset("Rig"); 
             Transform bodyPivot = VRRig.LocalRig.transform.Find("rig/body_pivot") ?? VRRig.LocalRig.transform;
